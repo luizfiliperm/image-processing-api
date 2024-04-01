@@ -12,7 +12,7 @@ public class BlackAndWhiteServiceImpl implements BlackAndWhiteService {
     @Override
     public void redBased(Image image) {
         for(int i = 0; i < image.getWidth(); i++){
-            for(int j = 0; j < image.getHeight(); i++){
+            for(int j = 0; j < image.getHeight(); j++){
                 Color color = new Color(image.getBufferedImage().getRGB(i,j));
                 Color newColor = new Color(color.getRed(), color.getRed(), color.getRed());
                 image.getBufferedImage().setRGB(i,j, newColor.getRGB());
@@ -23,7 +23,7 @@ public class BlackAndWhiteServiceImpl implements BlackAndWhiteService {
     @Override
     public void greenBased(Image image) {
         for(int i = 0; i < image.getWidth(); i++){
-            for(int j = 0; j < image.getHeight(); i++){
+            for(int j = 0; j < image.getHeight(); j++){
                 Color color = new Color(image.getBufferedImage().getRGB(i,j));
                 Color newColor = new Color(color.getGreen(), color.getGreen(), color.getGreen());
                 image.getBufferedImage().setRGB(i,j, newColor.getRGB());
@@ -34,7 +34,7 @@ public class BlackAndWhiteServiceImpl implements BlackAndWhiteService {
     @Override
     public void blueBased(Image image) {
         for(int i = 0; i < image.getWidth(); i++){
-            for(int j = 0; j < image.getHeight(); i++){
+            for(int j = 0; j < image.getHeight(); j++){
                 Color color = new Color(image.getBufferedImage().getRGB(i,j));
                 Color newColor = new Color(color.getBlue(), color.getBlue(), color.getBlue());
                 image.getBufferedImage().setRGB(i,j, newColor.getRGB());

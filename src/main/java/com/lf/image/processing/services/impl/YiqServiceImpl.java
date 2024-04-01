@@ -14,7 +14,7 @@ public class YiqServiceImpl implements YiqService {
     public void increaseY(Image image, int value) {
 
         for(int i = 0; i < image.getWidth(); i++){
-            for(int j = 0; j < image.getHeight(); i++){
+            for(int j = 0; j < image.getHeight(); j++){
                 YIQ yiq = new YIQ(new Color(image.getBufferedImage().getRGB(i,j)));
                 YIQ newYiq = new YIQ(getYValue(yiq.getY(), value), yiq.getI(), yiq.getQ());
                 image.getBufferedImage().setRGB(i,j, newYiq.convertToRGB());
@@ -25,7 +25,7 @@ public class YiqServiceImpl implements YiqService {
     @Override
     public void increaseI(Image image, int value) {
         for(int i = 0; i < image.getWidth(); i++){
-            for(int j = 0; j < image.getHeight(); i++){
+            for(int j = 0; j < image.getHeight(); j++){
                 YIQ yiq = new YIQ(new Color(image.getBufferedImage().getRGB(i,j)));
                 YIQ newYiq = new YIQ(yiq.getY(), getIValue(yiq.getI(), value), yiq.getQ());
                 image.getBufferedImage().setRGB(i,j, newYiq.convertToRGB());
@@ -36,7 +36,7 @@ public class YiqServiceImpl implements YiqService {
     @Override
     public void increaseQ(Image image, int value) {
         for(int i = 0; i < image.getWidth(); i++){
-            for(int j = 0; j < image.getHeight(); i++){
+            for(int j = 0; j < image.getHeight(); j++){
                 YIQ yiq = new YIQ(new Color(image.getBufferedImage().getRGB(i,j)));
                 YIQ newYiq = new YIQ(yiq.getY(), yiq.getI(), getQValue(yiq.getQ(), value));
                 image.getBufferedImage().setRGB(i,j, newYiq.convertToRGB());

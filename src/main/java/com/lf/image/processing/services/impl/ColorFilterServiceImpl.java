@@ -12,7 +12,7 @@ public class ColorFilterServiceImpl implements ColorFilterService {
     @Override
     public void redBand(Image image) {
         for(int i = 0; i < image.getWidth(); i++){
-            for(int j = 0; j < image.getHeight(); i++){
+            for(int j = 0; j < image.getHeight(); j++){
                 Color color = new Color(image.getBufferedImage().getRGB(i,j));
                 Color newColor = new Color(color.getRed(), 0, 0);
                 image.getBufferedImage().setRGB(i,j, newColor.getRGB());
@@ -23,7 +23,7 @@ public class ColorFilterServiceImpl implements ColorFilterService {
     @Override
     public void greenBand(Image image) {
         for(int i = 0; i < image.getWidth(); i++){
-            for(int j = 0; j < image.getHeight(); i++){
+            for(int j = 0; j < image.getHeight(); j++){
                 Color color = new Color(image.getBufferedImage().getRGB(i,j));
                 Color newColor = new Color(0, color.getGreen(), 0);
                 image.getBufferedImage().setRGB(i,j, newColor.getRGB());
@@ -34,7 +34,7 @@ public class ColorFilterServiceImpl implements ColorFilterService {
     @Override
     public void blueBand(Image image) {
         for(int i = 0; i < image.getWidth(); i++){
-            for(int j = 0; j < image.getHeight(); i++){
+            for(int j = 0; j < image.getHeight(); j++){
                 Color color = new Color(image.getBufferedImage().getRGB(i,j));
                 Color newColor = new Color(0, 0, color.getBlue());
                 image.getBufferedImage().setRGB(i,j, newColor.getRGB());
