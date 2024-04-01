@@ -5,6 +5,7 @@ import lombok.NoArgsConstructor;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.net.URL;
 
@@ -35,6 +36,16 @@ public class Image {
     private BufferedImage readBufferedImage(String url) {
         try {
             return ImageIO.read(new URL(url));
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public byte[] convertToByte(){
+        try {
+            ByteArrayOutputStream baos = new ByteArrayOutputStream();
+            ImageIO.write(this.bufferedImage, "jpg", baos);
+            return baos.toByteArray();
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
