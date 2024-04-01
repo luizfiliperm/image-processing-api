@@ -12,5 +12,5 @@ public interface BlackAndWhiteService {
 
     void averageBased(Image image);
 
-    void binaryImage(Image image);
+    void binaryImage(Image image, int value);
 }
