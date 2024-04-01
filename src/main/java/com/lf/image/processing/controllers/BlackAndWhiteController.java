@@ -42,4 +42,16 @@ public class BlackAndWhiteController {
                 .contentType(MediaType.IMAGE_JPEG)
                 .body(image.convertToByte());
     }
+
+    @GetMapping("/binary")
+    public ResponseEntity<byte[]> getBinaryImage(
+            @RequestParam(value = "value", defaultValue = "100", required = false) int value,
+            @RequestBody ImageDto imageDto
+    ){
+        Image image = new Image(imageDto.getUrl());
+        blackAndWhiteService.binaryImage(image, value);
+        return ResponseEntity.ok()
+                .contentType(MediaType.IMAGE_JPEG)
+                .body(image.convertToByte());
+    }
 }
