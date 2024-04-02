@@ -11,8 +11,7 @@ import java.awt.*;
 public class YiqServiceImpl implements YiqService {
 
     @Override
-    public void increaseY(Image image, int value) {
-
+    public void increaseY(Image image, double value) {
         for(int i = 0; i < image.getWidth(); i++){
             for(int j = 0; j < image.getHeight(); j++){
                 YIQ yiq = new YIQ(new Color(image.getBufferedImage().getRGB(i,j)));
@@ -23,7 +22,18 @@ public class YiqServiceImpl implements YiqService {
     }
 
     @Override
-    public void increaseI(Image image, int value) {
+    public void multiplyY(Image image, double value) {
+        for(int i = 0; i < image.getWidth(); i++){
+            for(int j = 0; j < image.getHeight(); j++){
+                YIQ yiq = new YIQ(new Color(image.getBufferedImage().getRGB(i,j)));
+                YIQ newYiq = new YIQ(yiq.getY() * value, yiq.getI(), yiq.getQ());
+                image.getBufferedImage().setRGB(i,j, newYiq.convertToRGB());
+            }
+        }
+    }
+
+    @Override
+    public void increaseI(Image image, double value) {
         for(int i = 0; i < image.getWidth(); i++){
             for(int j = 0; j < image.getHeight(); j++){
                 YIQ yiq = new YIQ(new Color(image.getBufferedImage().getRGB(i,j)));
@@ -34,7 +44,7 @@ public class YiqServiceImpl implements YiqService {
     }
 
     @Override
-    public void increaseQ(Image image, int value) {
+    public void increaseQ(Image image, double value) {
         for(int i = 0; i < image.getWidth(); i++){
             for(int j = 0; j < image.getHeight(); j++){
                 YIQ yiq = new YIQ(new Color(image.getBufferedImage().getRGB(i,j)));
@@ -44,27 +54,26 @@ public class YiqServiceImpl implements YiqService {
         }
     }
 
-    private Double getYValue(Double y, int value){
-        if(y + value < 0)
-            return 0.0;
-        if(y + value > 1)
-            return 1.0;
+    @Override
+    public void invertY(Image image) {
+        for(int i = 0; i < image.getWidth(); i++){
+            for(int j = 0; j < image.getHeight(); j++){
+                YIQ yiq = new YIQ(new Color(image.getBufferedImage().getRGB(i,j)));
+                YIQ newYiq = new YIQ(255 - yiq.getY(), yiq.getI(), yiq.getQ());
+                image.getBufferedImage().setRGB(i,j, newYiq.convertToRGB());
+            }
+        }
+    }
+
+    private Double getYValue(Double y, double value){
         return y + value;
     }
 
-    private Double getIValue(Double i, int value){
-        if(i + value < -0.5957)
-            return -0.5957;
-        if(i + value > 0.5957)
-            return 0.5957;
+    private Double getIValue(Double i, double value){
         return i + value;
     }
 
-    private Double getQValue(Double q, int value){
-        if(q + value < -0.5226)
-            return -0.5226;
-        if(q + value > 0.5226)
-            return 0.5226;
+    private Double getQValue(Double q, double value){
         return q + value;
     }
 }

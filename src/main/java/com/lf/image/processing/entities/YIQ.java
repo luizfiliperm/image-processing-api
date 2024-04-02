@@ -25,9 +25,18 @@ public class YIQ {
     }
 
     public int convertToRGB(){
-        int red = (int) (this.y + 0.956 * this.i + 0.621 * this.q);
-        int green = (int) (this.y - 0.272 * this.i - 0.647 * this.q);
-        int blue = (int) (this.y - 1.106 * this.i + 1.703 * this.q);
+        int red = getBandValue((int)(this.y + 0.956 * this.i + 0.621 * this.q));
+        int green = getBandValue((int)(this.y - 0.272 * this.i - 0.647 * this.q));
+        int blue = getBandValue((int)(this.y - 1.106 * this.i + 1.703 * this.q));
+
         return new Color(red, green, blue).getRGB();
+    }
+
+    private int getBandValue(int band){
+        if(band < 0)
+            return 0;
+        if(band > 255)
+            return 255;
+        return band;
     }
 }
